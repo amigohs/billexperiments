@@ -13,39 +13,50 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #f7f7f7;
+      background: linear-gradient(135deg, #ffcc33, #ff9966);
     }
 
     #app {
       text-align: center;
-      max-width: 400px;
+      width: 100%;
+      max-width: 500px;
     }
 
     .flashcard {
       background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      margin: 20px;
-      font-size: 18px;
+      border-radius: 16px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      margin: 20px 0;
+      font-size: 24px;
       line-height: 1.5;
-      height: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      height: 75vh;
     }
 
     .buttons {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
       margin-top: 20px;
     }
 
+    .row-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 10px;
+    }
+
     .button {
-      padding: 10px 20px;
+      padding: 15px 30px;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 18px;
       cursor: pointer;
       color: white;
       transition: background-color 0.3s;
@@ -66,14 +77,26 @@
     .button-right:hover {
       background-color: #43a047;
     }
+
+    .button-up {
+      background-color: #2196f3;
+      margin-bottom: 10px;
+    }
+
+    .button-up:hover {
+      background-color: #1e88e5;
+    }
   </style>
 </head>
 <body>
   <div id="app">
     <div id="flashcard" class="flashcard">Loading...</div>
     <div class="buttons">
-      <button class="button button-left" onclick="swipeLeft()">👈 Swipe Left</button>
-      <button class="button button-right" onclick="swipeRight()">Swipe Right 👉</button>
+      <button class="button button-up" onclick="swipeUp()">🔼 Swipe Up</button>
+      <div class="row-buttons">
+        <button class="button button-left" onclick="swipeLeft()">👈 Swipe Left</button>
+        <button class="button button-right" onclick="swipeRight()">Swipe Right 👉</button>
+      </div>
     </div>
   </div>
 
@@ -106,6 +129,11 @@
 
     function swipeRight() {
       alert(`You swiped right on: "${flashcards[currentIndex]}"`);
+      nextFlashcard();
+    }
+
+    function swipeUp() {
+      alert(`You swiped up on: "${flashcards[currentIndex]}" (Marked as special!)`);
       nextFlashcard();
     }
 

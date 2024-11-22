@@ -1,0 +1,71 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class FlashcardApp:
+    def __init__(self, root, flashcards):
+        self.root = root
+        self.flashcards = flashcards
+        self.current_index = 0
+        self.setup_ui()
+
+    def setup_ui(self):
+        self.root.title("Flashcard App")
+        self.root.geometry("400x300")
+
+        # Flashcard Frame
+        self.card_frame = tk.Frame(self.root, bg="white", width=300, height=200)
+        self.card_frame.pack(pady=20)
+        self.card_frame.pack_propagate(False)
+
+        # Flashcard Text
+        self.flashcard_text = tk.Label(
+            self.card_frame,
+            text=self.flashcards[self.current_index],
+            bg="white",
+            font=("Arial", 18),
+            wraplength=280,
+        )
+        self.flashcard_text.pack(expand=True)
+
+        # Buttons for swipe functionality
+        self.button_frame = tk.Frame(self.root)
+        self.button_frame.pack()
+
+        self.left_button = tk.Button(
+            self.button_frame, text="👈 Swipe Left", command=self.swipe_left, bg="red", fg="white", width=15
+        )
+        self.left_button.grid(row=0, column=0, padx=10, pady=10)
+
+        self.right_button = tk.Button(
+            self.button_frame, text="Swipe Right 👉", command=self.swipe_right, bg="green", fg="white", width=15
+        )
+        self.right_button.grid(row=0, column=1, padx=10, pady=10)
+
+    def swipe_left(self):
+        messagebox.showinfo("Swipe Left", f"You swiped left on: {self.flashcards[self.current_index]}")
+        self.next_card()
+
+    def swipe_right(self):
+        messagebox.showinfo("Swipe Right", f"You swiped right on: {self.flashcards[self.current_index]}")
+        self.next_card()
+
+    def next_card(self):
+        self.current_index += 1
+        if self.current_index >= len(self.flashcards):
+            messagebox.showinfo("Finished", "You've gone through all the flashcards!")
+            self.root.quit()
+        else:
+            self.flashcard_text.config(text=self.flashcards[self.current_index])
+
+# Flashcards data
+flashcards = [
+    "Python is a high-level programming language.",
+    "The capital of France is Paris.",
+    "E=mc^2 is Einstein's mass-energy equivalence formula.",
+    "Water boils at 100°C under standard pressure.",
+]
+
+# Initialize the app
+root = tk.Tk()
+app = FlashcardApp(root, flashcards)
+root.mainloop()

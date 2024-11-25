@@ -102,10 +102,10 @@
 
   <script>
     const flashcards = [
-      "Python is a high-level programming language.",
-      "The capital of France is Paris.",
-      "E=mc^2 is Einstein's mass-energy equivalence formula.",
-      "Water boils at 100°C under standard pressure.",
+      "Will Octopi become successful?",
+      "Hey Mark this is a test",
+      "Bark Industries 101",
+      "Bionicle",
     ];
 
     let currentIndex = 0;
